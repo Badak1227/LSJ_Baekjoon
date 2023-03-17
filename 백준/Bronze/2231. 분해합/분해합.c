@@ -18,16 +18,12 @@ int main() {
         
         int tmpi = i;
         int tmpM = i;
-        int tmplen = 1;
-        for (int j = 1; j < numlen(i); j++) {
-            tmplen *= 10;
+        
+        while(tmpi){
+            tmpM += tmpi%10;
+            tmpi /= 10;
         }
-
-        for (int j = 0; j < numlen(i); j++) {
-            tmpM += tmpi / tmplen;
-            tmpi -= tmpi / tmplen * tmplen;
-            tmplen /= 10;
-        }
+        
         if (tmpM == N) {
             M = i;
         }
