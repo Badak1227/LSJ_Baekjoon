@@ -1,52 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char w[8][8] = {
-    {'W','B','W','B','W','B','W','B'},
-    {'B','W','B','W','B','W','B','W'},
-    {'W','B','W','B','W','B','W','B'},
-    {'B','W','B','W','B','W','B','W'},
-    {'W','B','W','B','W','B','W','B'},
-    {'B','W','B','W','B','W','B','W'},
-    {'W','B','W','B','W','B','W','B'},
-    {'B','W','B','W','B','W','B','W'}
-};
-
-char b[8][8] = {
-    {'B','W','B','W','B','W','B','W'},
-    {'W','B','W','B','W','B','W','B'},
-    {'B','W','B','W','B','W','B','W'},
-    {'W','B','W','B','W','B','W','B'},
-    {'B','W','B','W','B','W','B','W'},
-    {'W','B','W','B','W','B','W','B'},
-    {'B','W','B','W','B','W','B','W'},
-    {'W','B','W','B','W','B','W','B'}
-};
-
-int compare_w(char** board, int row, int column) {
+int compare(char** board, int row, int column) {
     int answer = 0;
     int r = row, c = column;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if (w[i][j] != board[r][c++]) {
-                answer++;
-            }
+            answer+=(board[r][c] == 'W')^((r+c)%2 == 0);
+            c++;
         }
         r++; c = column;
     }
-    return answer;
-}
-
-int compare_b(char** board, int row, int column) {
-    int answer = 0;
-    int r = row, c = column;
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
-            if (b[i][j] != board[r][c++]) {
-                answer++;
-            }
-        }
-        r++; c = column;
+    if(answer > 32){
+        return 64-answer;
     }
     return answer;
 }
@@ -66,9 +32,7 @@ int main() {
     int answer = 64;
     for (int i = 0; i <= N - 8; i++) {
         for (int j = 0; j <= M - 8; j++) {
-            answer = compare_w(board, i, j);
-            min = (answer < min) ? answer : min;
-            answer = compare_b(board, i, j);
+            answer = compare(board, i, j);
             min = (answer < min) ? answer : min;
         }
     }
