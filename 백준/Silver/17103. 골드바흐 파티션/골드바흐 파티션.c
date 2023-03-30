@@ -6,12 +6,12 @@ int main() {
     int T, num;
     scanf("%d", &T);
 
-    for (int i = 2; i * i < 1000000; i++) {
+    for (int i = 2; i <= 1000000; i++) {
         if (nums[i] != 1) {
-            nums[i] = 0;
+            nums[i] = i;
         }
-        for (int j = i * i; j < 1000000; j += i) {
-            nums[j] = 1;
+        for (int j = 2 ; j*i <= 1000000; j++) {
+            nums[j*i] = 1;
         }
     }
 
@@ -19,7 +19,7 @@ int main() {
         int count = 0;
         scanf("%d", &num);
         for (int j = 2; j <= num / 2; j++) {
-            if (nums[j] == 0 && nums[num - j] == 0) {
+            if (nums[j] + nums[num - j] == num) {
                 count++;
             }
         }
