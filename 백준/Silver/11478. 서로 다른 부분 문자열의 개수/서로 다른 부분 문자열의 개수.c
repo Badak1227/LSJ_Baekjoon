@@ -15,16 +15,18 @@ trie* new_trie() {
     return tmp;
 }
 
-void insert(char str[], int end, trie* head) {
-    trie* cur = head;
+void insert(char str[], trie* head) {
 
-    for (int i = 0; i <=  end; i++) {
-        int index = str[i] - 'a';
-        if (!cur->alphabet[index]) {
-            cur->alphabet[index] = new_trie();
-            count++;
+    for (int i = 0; str[i]; i++) {
+        trie* cur = head;
+        for (int j = i; str[j]; j++) {
+            int index = str[j] - 'a';
+            if (!cur->alphabet[index]) {
+                cur->alphabet[index] = new_trie();
+                count++;
+            }
+            cur = cur->alphabet[index];
         }
-        cur = cur->alphabet[index];
     }
 }
 
@@ -39,11 +41,7 @@ int main() {
         str[len++] = c;
     }
 
-    for (int i = 0; str[i]; i++) {
-        for (int j = i; str[j]; j++) {
-            insert(str + i, j-i, str_trie);
-        }
-    }
+    insert(str, str_trie);
 
     printf("%d", count);
 }
