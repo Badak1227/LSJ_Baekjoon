@@ -9,7 +9,7 @@ int main() {
         int index = 0;
         int VPS = 1;
 
-        char PS[50];
+        char PS[51];
         scanf("%s", PS);
         int j = 0;
         while (PS[j]) {
