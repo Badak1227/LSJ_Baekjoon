@@ -1,25 +1,24 @@
 #include <stdio.h>
 
 int main() {
-	int max, n;
-	int num[100000] = { 0 };
+	int max, sum, n;
 	scanf("%d", &n);
 
-	scanf("%d", &num[0]);
-	max = num[0];
+	scanf("%d", &sum);
+	max = sum;
 
 	for (int i = 1; i < n; i++) {
 		int tmp;
 		scanf("%d", &tmp);
 
-		if (tmp + num[i - 1] < tmp) {
-			num[i] = tmp;
+		if (tmp + sum < tmp) {
+			sum = tmp;
 		}
 		else {
-			num[i] = tmp + num[i-1];
+			sum = tmp + sum;
 		}
 
-		max = num[i] > max ? num[i] : max;
+		max = sum > max ? sum : max;
 	}
 
 	printf("%d", max);
