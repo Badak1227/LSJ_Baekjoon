@@ -10,12 +10,14 @@ int main() {
 	for (int i = 1; i < n; i++) {
 		int tmp;
 		scanf("%d", &tmp);
-
-		if (tmp + sum < tmp) {
+        
+        int check = tmp + sum;
+        
+		if (check < tmp) {
 			sum = tmp;
 		}
 		else {
-			sum = tmp + sum;
+			sum = check;
 		}
 
 		max = sum > max ? sum : max;
