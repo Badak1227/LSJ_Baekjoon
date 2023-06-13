@@ -2,13 +2,6 @@
 
 int dp[100001] = { 1, 0 };
 
-void sol(int arr[], int n, int k) {
-	if (k < arr[n]) return;
-
-	sol(arr, n, k - 1);
-	dp[k] += dp[k - arr[n]];
-}
-
 int main() {
 	int coin[100] = { 0 }, n, k;
 
@@ -18,8 +11,10 @@ int main() {
 		scanf("%d", &coin[i]);
 	}
 
-	for (int j = 0; j < n; j++) {
-		sol(coin, j, k);
+	for (int i = 0; i < n; i++) {
+		for (int j = coin[i]; j <= k; j++) {
+			dp[j] += dp[j - coin[i]];
+		}
 	}
 
 	printf("%d", dp[k]);
