@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int dp[100001] = { 1, 0 };
+int dp[10001] = { 1, 0 };
 
 int main() {
 	int coin[100] = { 0 }, n, k;
