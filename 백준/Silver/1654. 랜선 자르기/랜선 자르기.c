@@ -1,6 +1,17 @@
 #include <stdio.h>
 
-void bsearch(long long LAN[], long long max, int N) {
+int main() {
+	int K, N;
+	long long LAN[10001] = { 0 }, max = 0;
+
+	scanf("%d %d", &K, &N);
+
+	for (int i = 0; i < K; i++) {
+		scanf("%lld", &LAN[i]);
+
+		max = LAN[i] > max ? LAN[i] : max;
+	}
+
 	long long l = 1, r = max, count = 0;
 
 	while (l <= r) {
@@ -22,19 +33,4 @@ void bsearch(long long LAN[], long long max, int N) {
 	}
 
 	printf("%lld", r);
-}
-
-int main() {
-	int K, N;
-	long long LAN[10001] = { 0 }, max = 0;
-
-	scanf("%d %d", &K, &N);
-
-	for (int i = 0; i < K; i++) {
-		scanf("%lld", &LAN[i]);
-
-		max = LAN[i] > max ? LAN[i] : max;
-	}
-
-	bsearch(LAN, max, N);
 }
