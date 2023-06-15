@@ -20,7 +20,7 @@ int main() {
 		for (int i = 0; i < N; i++) {
 			if (trees[i] <= m) continue;
 
-			len += (long long)(trees[i] - m);
+			len += trees[i] - m;
 		}
 
 		if (len < M) {
