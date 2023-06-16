@@ -21,8 +21,8 @@ int main() {
 	long long answer = 0;
 
 	for (int i = 0; i < 10; i++) {
-		answer += stair[cur][i] % 1000000000;
+		answer = (answer + stair[cur][i]) % 1000000000;
 	}
 
-	printf("%lld", answer % 1000000000);
+	printf("%lld", answer);
 }
