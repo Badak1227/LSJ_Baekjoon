@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+int visited[9] = { 0 };
+
 void print(int N, int M, int cnt, int arr[]) {
     if (cnt == M) {
         for (int i = 0; i < cnt; i++) {
@@ -10,16 +12,17 @@ void print(int N, int M, int cnt, int arr[]) {
     }
 
     for (int i = 1; i <= N; i++) {
-        int con = 1;
 
-        for (int j = 0; j < cnt; j++) {
-            if (arr[j] == i) {
-                con = 0;
-            }
+        if (!visited[i]) {
+
+            visited[i] = 1;
+
+            arr[cnt] = i;
+
+            print(N, M, cnt + 1, arr);
+
+            visited[i] = 0;
         }
-
-        arr[cnt] = i;
-        if(con) print(N, M, cnt + 1, arr);
     }
 }
 
