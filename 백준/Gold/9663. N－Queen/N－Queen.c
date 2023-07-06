@@ -8,24 +8,10 @@ int crosscheck(int row, int col) {
     while (con) {
         
         con = 0;
-
-        if (row + check <= N && col + check <= N) {
-            con = 1;
-            if (board[row + check][col + check] == 1) {
-                return 0;
-            }
-        }
         
         if (row + check <= N && col - check >= 1) {
             con = 1;
             if (board[row + check][col - check] == 1) {
-                return 0;
-            }
-        }
-        
-        if (row - check >= 1 && col + check <= N) {
-            con = 1;
-            if (board[row - check][col + check] == 1) {
                 return 0;
             }
         }
