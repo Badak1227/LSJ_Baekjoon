@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-char map[1000][1000] = { 0 };
-int n, m, init_x, init_y, queue[1000001][2] = {0}, start = 0, end = 0, dp[1000][1000] = { 0 }, movement[4][2] = { {1, 0}, {0, 1}, {-1, 0}, {0, -1} };
+int n, m, init_x, init_y, queue[1000001][2] = {0}, start = 0, end = 0, map[1000][1000] = { 0 }, dp[1000][1000] = { 0 }, movement[4][2] = { {1, 0}, {0, 1}, {-1, 0}, {0, -1} };
 
 void input(int x, int y) {
     queue[end][0] = x;
