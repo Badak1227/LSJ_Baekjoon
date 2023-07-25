@@ -1,39 +1,43 @@
 #include <stdio.h>
 
-int gcd(int a, int b) {
-    while (b != 0) {
-        int temp = b;
-        b = a % b;
-        a = temp;
-    }
-    return a;
+void swap(int* num1, int* num2) {
+	int tmp = *num1;
+	*num1 = *num2;
+	*num2 = tmp;
 }
 
-int lcm(int a, int b) {
-    return a * b / gcd(a, b);
+int gcd(int num1, int num2) {
+	if (num1 == 0) return num2;
+
+	return gcd(num2 % num1, num1);
 }
 
 int main() {
-    int T;
-    scanf("%d", &T);
+	int T;
 
-    while (T--) {
-        int M, N, x, y;
-        scanf("%d %d %d %d", &M, &N, &x, &y);
+	scanf("%d", &T);
 
-        int lcm_MN = lcm(M, N);
-        int answer = -1;
+	while (T--) {
+		int M, N, x, y, lcm, ans = -1;
 
-        while (x <= lcm_MN) {
-            if ((x - 1) % N + 1 == y) {
-                answer = x;
-                break;
-            }
-            x += M;
-        }
+		scanf("%d %d %d %d", &M, &N, &x, &y);
 
-        printf("%d\n", answer);
-    }
+		if (M < N) {
+			swap(&M, &N);
+			swap(&x, &y);
+		}
 
-    return 0;
+		if (y == N) y = 0;
+
+		lcm = M * N / gcd(N, M);
+
+		for (int i = x; i <= lcm; i += M) {
+			if (i % N == y) {
+				ans = i;
+				break;
+			}
+		}
+
+		printf("%d\n", ans);
+	}
 }
