@@ -8,7 +8,7 @@ typedef struct node {
 
 node* arr[100001] = { 0 };
 
-int N, visited[100001] = { 0 }, res[100001] = { 0 };
+int N, res[100001] = { 0 };
 
 node* getNode() {
 	node* tmp = (node*)malloc(sizeof(node));
@@ -51,13 +51,11 @@ void insert(int v1, int v2) {
 
 void dfs(int cur) {
 
-	visited[cur] = 1;
-
 	node* next = arr[cur];
 
 	while (next != NULL) {
 
-		if (!visited[next->data]) {
+		if (!res[next->data]) {
 			res[next->data] = cur;
 
 			dfs(next->data);
@@ -78,7 +76,9 @@ int main() {
 
 		insert(v1, v2);
 	}
-
+    
+    res[1] = 1;
+    
 	dfs(1);
 
 	for (int i = 2; i <= N; i++) {
