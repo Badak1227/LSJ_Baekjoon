@@ -26,16 +26,12 @@ void insert(int v1, int v2) {
 		arr[v1]->data = v2;
 	}
 	else {
-		node* cur = arr[v1];
+		node* tmp = getNode();
 
-		while (cur->next != NULL) {
-			cur = cur->next;
-		}
-
-		cur->next = getNode();
-		cur = cur->next;
-
-		cur->data = v2;
+		tmp->data = v2;
+        tmp->next = arr[v1];
+        
+        arr[v1] = tmp;
 	}
 
 	if (arr[v2] == 0) {
@@ -44,16 +40,12 @@ void insert(int v1, int v2) {
 		arr[v2]->data = v1;
 	}
 	else {
-		node* cur = arr[v2];
+		node* tmp = getNode();
 
-		while (cur->next != NULL) {
-			cur = cur->next;
-		}
-
-		cur->next = getNode();
-		cur = cur->next;
-
-		cur->data = v1;
+		tmp->data = v1;
+        tmp->next = arr[v2];
+        
+        arr[v2] = tmp;
 	}
 }
 
