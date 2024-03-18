@@ -43,6 +43,8 @@ int main() {
 
 	scanf("%d %d", &N, &K);
 	
+    K = K < (N-K) ? K : (N-K);
+    
 	d = modulo_d(K);
 
 	n1 = modulo_u(N, K);
