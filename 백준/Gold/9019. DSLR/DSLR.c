@@ -8,7 +8,14 @@ typedef struct dslr {
 
 dslr visited[10000] = { 0 };
 int num_queue[10000] = { 0 }, bot = 0, top = 0, point = 0;
-char print_stack[10000] = { 0 };
+
+void print(int start, int now) {
+	if (start == now) return;
+
+	print(start, visited[now].prev_num);
+
+	printf("%c", visited[now].cur_dslr);
+}
 
 void push(int cur_num, char dslr, int prev_num) {
 	if (visited[cur_num].cur_dslr != 0) return;
@@ -45,48 +52,22 @@ int bfs(int start, int target) {
 		
 		if (next_num == target) break;
 
-		int now_digit = 0; //자릿수
-
-		for (int i = now_num; i > 0; i = i / 10) {
-			now_digit++;
-		}
-
 		//L
-		int tmp = 0;
-
-		if (now_digit == 4) {
-			tmp = now_num - now_num % 1000;
-			next_num = (now_num - tmp) * 10 + tmp / 1000;
-		}
-		else {
-			next_num = now_num * 10;
-		}
+		next_num = now_num / 1000 + now_num % 1000 * 10;
 
 		push(next_num, 'L', now_num);
 
 		if (next_num == target) break;
 
 		//R
-		tmp = now_num % 10;
-		next_num = now_num / 10 + tmp * 1000;
+		next_num = now_num / 10 + now_num % 10 * 1000;
 
 		push(next_num, 'R', now_num);
 
 		if (next_num == target) break;
 	}
 
-	int search = target;
-
-	while (search != start) {
-		print_stack[point++] = visited[search].cur_dslr;
-
-		search = visited[search].prev_num;
-	}
-
-	while(point != 0) {
-		printf("%c", print_stack[point-1]);
-		point--;
-	}
+	print(start, target);
 	printf("\n");
 
 	top = 0;
