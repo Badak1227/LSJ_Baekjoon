@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-char graph[100][100] = { 0 }, N;
-
 int main() {
+    char graph[100][100] = { 0 }, N;
+    
 	scanf("%d", &N);
 
 	for (int i = 0; i < N; i++) {
